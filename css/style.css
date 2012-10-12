@@ -2,6 +2,7 @@ body {
     background: #e2e2e2 url(../i/bg.png);
     position: relative;
     padding-top: 10px;
+    font-family: Arial, Helvetica, Verdana, sans-serif;
 }
 #container {
     display: block;
@@ -75,4 +76,32 @@ button.reply-button {
 .add-comment-form {
     text-align: center;
     margin-top: 55px;
+}
+.add-comment-form button.reply-button {
+    font-size: 16px;
+    font-weight: normal;
+}
+div.form {
+    margin-top: 22px;
+    background-color: #fdfbe9;
+    padding: 20px;
+}
+div.form h1 {
+    color: #5D503C;
+    font-size: 14px;
+    font-weight: bold;
+}
+input[type=text] {
+    height: 12px;
+    width: 300px;
+}
+textarea {
+    width: 615px;
+}
+input[type=text], textarea{        
+    border: 1px solid #EFEEE8;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+    margin: 10px 0px;
 }

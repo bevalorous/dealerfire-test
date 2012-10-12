@@ -26,6 +26,17 @@ $start = microtime();
             </div>            
         </div>
         <?php endfor; ?>
+        
+        <div class="form">
+            <h1>Add comment</h1>
+            <form  action="" method="post">
+                <div><input type="text" name="author" placeholder="Name" maxlength="100"></div>
+                <div><input type="text" name="email" placeholder="Email" maxlength="100"></div>
+                <div><textarea placeholder="Your comment"></textarea></div>
+                <button class="reply-button">Add comment</button> <a href="#">Cancel</a>
+            </form>
+        </div>
+        
         <div class="add-comment-form">
             <button class="reply-button">Add comment</button>
         </div>
