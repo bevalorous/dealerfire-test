@@ -1,4 +1,5 @@
 <?php
+$start = microtime();
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,5 +30,9 @@
             <button class="reply-button">Add comment</button>
         </div>
 	</div>
+<?php
+$end = microtime();
+?>
+Page rendering time: <?php echo sprintf('%.6f', $end - $start); ?> sec
 </body>
 </html>
