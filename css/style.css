@@ -1,0 +1,78 @@
+body {
+    background: #e2e2e2 url(../i/bg.png);
+    position: relative;
+    padding-top: 10px;
+}
+#container {
+    display: block;
+    width: 920px;
+    margin: 0 auto;
+}
+#container .comment {
+    background: #fdfbe9 url(../i/line.png);
+    min-height: 155px;
+    margin-top: 22px;
+    position: relative;
+}        
+.comment .thumb-col {
+    float: left;
+    width: 100px;
+}
+.comment .comment-col {
+    padding: 5px 30px 5px 5px;
+    margin-left: 100px;
+}
+.comment .thumb {            
+    background-color: #fff;
+    border: solid 1px #dad8c9;
+    height: 62px;
+    width: 62px;
+    display: block;
+    margin: 40px 13px 0 20px;
+    padding: 3px;
+}
+.comment .thumb div {
+    background-color: #ededed;
+    width: 62px;
+    height: 62px;
+}
+.comment .text {
+    margin: 35px 0 23px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+.comment .datetime {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #ae9e8a;
+}
+.comment .author {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #766958;
+}
+button.reply-button {
+    color: #fff;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #745532;
+    border-color: #745532;
+}
+.comment .reply-button {
+    position: absolute;
+    right: 30px;
+    bottom: 25px; 
+}
+#add-comment-corner {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    background: url(../i/add-comment-corner-bg.png) left top no-repeat;
+    width: 360px;
+    height: 210px;
+}
+.add-comment-form {
+    text-align: center;
+    margin-top: 55px;
+}
