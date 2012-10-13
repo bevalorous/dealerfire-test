@@ -9,7 +9,8 @@ class CommentController
         
         if (isset($_POST['Comment']))
         {
-        
+            $newComment->setAttributes($_POST['Comment']);
+            $newComment->save();            
         }
         
         $comments = Comment::findAll();
