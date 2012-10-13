@@ -6,7 +6,7 @@ class CommentController extends Controller
 {
     public function actionList()
     {
-        $newComment = new Comment();
+        $newComment = new Comment();        
         
         if (isset($_POST['Comment']))
         {
