@@ -1,5 +1,8 @@
 <?php
 $start = microtime();
+require_once('protected/controllers/CommentController.php');
+$commentController = new CommentController();
+$commentController->actionList();
 ?>
 <!DOCTYPE html>
 <html>
