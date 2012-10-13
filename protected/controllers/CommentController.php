@@ -26,11 +26,14 @@ class CommentController
         {
             $$name = $value;
         }
+        
         require('protected/views/comment/'.$view.'.php');
+        /*
         echo 'View file: '.$view.'<br>';
         echo 'Data for view: '.'<br>';
         echo '<pre>';
         echo print_r($data);
         echo '</pre>';
+        */
     }
 }

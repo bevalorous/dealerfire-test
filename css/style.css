@@ -60,6 +60,7 @@ button.reply-button {
     border-color: #745532;
     border-width: 1px;
     border-radius: 13px;
+    cursor: pointer;
 }
 .comment .reply-button {
     position: absolute;
@@ -109,4 +110,9 @@ input[type=text], textarea{
     margin: 10px 0px;
     border-radius: 3px;
     box-shadow: 0 0 5px;
+}
+.no-comments {
+    text-align: center;
+    background: #fdfbe9 url(../i/line.png);
+    padding: 20px;
 }
