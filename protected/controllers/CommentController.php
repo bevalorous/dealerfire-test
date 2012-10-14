@@ -12,9 +12,10 @@ class CommentController extends Controller
         {
             $newComment->setAttributes($_POST['Comment']);
             $newComment->save();            
-        }
+        }        
         
-        $comments = Comment::findAll();
+        $comment = new Comment();
+        $comments = $comment->findAll();
         $this->render('list', array(
             'comments'=>$comments,
             'newComment'=>$newComment,
