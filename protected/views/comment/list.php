@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Comment list</title>
+    <title><?php echo tr('Comment', 'List'); ?></title>
 </head>
 <body>	
     <div id="container">
@@ -21,35 +21,35 @@
                     <p class="author"><?php echo $comment->getAttribute('author'); ?></p>
                     <?php $dt = strtotime($comment->getAttribute('createTime')); ?>
                     <p class="datetime"><?php echo date('d M Y', $dt).'&nbsp;@&nbsp;'.date('h:ia', $dt); ?></p>
-                    <button class="reply-button">Reply</button>
+                    <button class="reply-button"><?php echo tr('Comment', 'Reply'); ?></button>
                 </div>            
             </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <div class="no-comments">No comments.</div>
+            <div class="no-comments"><?php echo tr('Comment', 'notFoundText'); ?></div>
         <?php endif; ?>
         
         <div class="form">
-            <h1>Add comment</h1>
+            <h1><?php echo tr('Comment', 'Add'); ?></h1>
             <form  action="" method="post">
                 <div class="row">
-                    <input type="text" name="Comment[author]" placeholder="Name" maxlength="100" value="<?php echo $newComment->getAttribute('author'); ?>">
+                    <input type="text" name="Comment[author]" placeholder="<?php echo tr('Comment', 'author'); ?>" maxlength="100" value="<?php echo $newComment->getAttribute('author'); ?>">
                     <div class="error"><?php echo $newComment->getError('author'); ?></div>
                 </div>
                 <div class="row">
-                    <input type="text" name="Comment[email]" placeholder="Email" maxlength="100" value="<?php echo $newComment->getAttribute('email'); ?>">
+                    <input type="text" name="Comment[email]" placeholder="<?php echo tr('Comment', 'email'); ?>" maxlength="100" value="<?php echo $newComment->getAttribute('email'); ?>">
                     <div class="error"><?php echo $newComment->getError('email'); ?></div>
                 </div>
                 <div class="row">
-                    <textarea name="Comment[content]" placeholder="Your comment"><?php echo $newComment->getAttribute('content'); ?></textarea>
+                    <textarea name="Comment[content]" placeholder="<?php echo tr('Comment', 'content'); ?>"><?php echo $newComment->getAttribute('content'); ?></textarea>
                     <div class="error"><?php echo $newComment->getError('content'); ?></div>
                 </div>
-                <button class="reply-button">Add comment</button> <a href="#">Cancel</a>
+                <button type="submit" class="reply-button"><?php echo tr('Comment', 'Add'); ?></button> <a href="#"><?php echo tr('Comment', 'Cancel'); ?></a>
             </form>
         </div>
         
         <div class="add-comment-form">
-            <button class="reply-button">Add comment</button>
+            <button class="reply-button"><?php echo tr('Comment', 'Add'); ?></button>
         </div>
 	</div>
 </body>
