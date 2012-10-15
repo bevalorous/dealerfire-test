@@ -8,6 +8,21 @@
 </head>
 <body>	
     <div id="container">
+		<div id="lang-switcher">			
+			<?php if (!isset($_GET['lang'])) $_GET['lang'] = 'en'; ?>
+			
+			<?php if ($_GET['lang'] != 'en'): ?>
+				<a href="?lang=en">English</a>
+			<?php else: ?>
+				<span class="current">English</span>
+			<?php endif; ?>
+			|
+			<?php if ($_GET['lang'] != 'ru'): ?>
+				<a href="?lang=ru">Русский</a>
+			<?php else: ?>
+				<span class="current">Русский</span>
+			<?php endif; ?>
+		</div>
         <?php if (isset($comments) && is_array($comments) && count($comments)): ?>
             <?php foreach ($comments as $comment): ?>
             <div class="comment">

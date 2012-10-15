@@ -9,6 +9,12 @@ body {
     width: 920px;
     margin: 0 auto;
 }
+#lang-switcher {
+	text-align: right;
+}
+#lang-switcher .current {
+	font-weight: bold;
+}
 #container .comment {
     background: #fdfbe9 url(../i/line.png) repeat;
     /*min-height: 155px;*/
