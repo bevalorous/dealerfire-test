@@ -4,9 +4,9 @@ require_once('base/Controller.php');
 
 class CommentController extends Controller
 {
-    public function actionList()
+    public function actionList($page = 1)
     {
-        $newComment = new Comment();        
+        $newComment = new Comment();   
         
         if (isset($_POST['Comment']))
         {
