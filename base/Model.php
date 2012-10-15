@@ -1,5 +1,4 @@
 <?php
-require_once('base/Db.php');
 class Model
 {
     protected $_attributes = array();
@@ -42,40 +41,11 @@ class Model
         return array();
     }
     
-    public function tableName()
-    {
-        return '';
-    }
-    
-    public function findAll($condition = '', $order = '')
-    {
-        $resultArray = Db::getInstance()->select($this->tableName(), '*', $condition, $order);
-        $result = array();
-        $className = get_class($this);            
-        foreach ($resultArray as $row)
-        {
-            $newObject = new $className;
-            $newObject->setAttributes($row);
-            $result[] = $newObject;
-        }
-        return $result;
-    }
-    
     public function validate()
     {
         return false;
     }
-
-    public function save($validate = true)
-    {
-        if ($validate && !$this->validate())
-            return false;
-        else
-        {
-            return Db::getInstance()->insert($this->tableName(), $this->_attributes);
-        }        
-    }
-	
+    
 	public function unsetAttributes()
 	{
 		foreach ($this->_attributes as $name => $value)
@@ -104,5 +74,10 @@ class Model
 			return $this->_errors;
 		else
 			return $this->getError($attribute);
+	}
+	
+	public function addError($attribute, $errorMessage)
+	{
+		$this->_errors[$attribute][] = $errorMessage;
 	}
 }

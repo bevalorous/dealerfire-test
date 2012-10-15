@@ -21,4 +21,4 @@ $commentController->$action();
 <?php
 $end = microtime_float();
 ?>
-<?php //Page rendering time: <?php echo sprintf('%.6f', $end - $start).' sec'; ?>
+<?php //echo 'Page rendering time: '.sprintf('%.6f', $end - $start).' sec'; ?>
