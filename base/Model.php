@@ -31,6 +31,11 @@ class Model
         else
             throw new Exception("Attribute '$name' doesn\'t exist in the model '".get_class($this)."'");
     }
+	
+	public function getAttributes()
+    {
+        return $this->_attributes;
+    }
 
     public function attributeNames()
     {
@@ -84,4 +89,20 @@ class Model
         $error = isset($this->_errors[$attributeName][0])? $this->_errors[$attributeName][0]: '';
         return $error;
     }
+	
+	public function hasErrors($attribute = null)
+	{
+		if (null === $attribute)
+			return count($this->_errors);
+		else
+			return count($this->_errors[$attribute]);
+	}
+	
+	public function getErrors($attribute = null)
+	{
+		if (null === $attribute)
+			return $this->_errors;
+		else
+			return $this->getError($attribute);
+	}
 }
