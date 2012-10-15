@@ -26,29 +26,43 @@
 		</div>
         <?php if (isset($comments) && is_array($comments) && count($comments)): ?>
             <?php foreach ($comments as $comment): ?>
-            <div class="comment">
-                <div class="thumb-col">
-                    <div class="thumb">
-                        <div></div>
-                    </div>
-                </div>
-                <div class="comment-col">
-                    <p class="text"><?php echo $comment->getAttribute('content'); ?></p>
-                    <p class="author"><?php echo $comment->getAttribute('author'); ?></p>
-                    <?php $dt = strtotime($comment->getAttribute('createTime')); ?>
-                    <p class="datetime"><?php echo date('d M Y', $dt).'&nbsp;@&nbsp;'.date('h:ia', $dt); ?></p>
-                    <button class="reply-button"><?php echo tr('Comment', 'Reply'); ?></button>
-                </div>
-            </div>
+            <div class="top-shadow"></div>
+			<div class="comment-wrapper">				
+				<div class="comment">
+					<div class="thumb-col">
+						<div class="thumb">
+							<div></div>
+						</div>
+					</div>
+					<div class="comment-col">
+						<p class="text"><?php echo $comment->getAttribute('content'); ?></p>
+						<p class="author"><?php echo $comment->getAttribute('author'); ?></p>
+						<?php $dt = strtotime($comment->getAttribute('createTime')); ?>
+						<p class="datetime"><?php echo date('d M Y', $dt).'&nbsp;@&nbsp;'.date('h:ia', $dt); ?></p>
+						<button class="reply-button">
+							<span class="left"></span>
+							<span><?php echo tr('Comment', 'Reply'); ?></span>
+							<span class="right"></span>
+						</button>
+					</div>
+				</div>
+			</div>	
+			<div class="bottom-shadow"></div>
             <?php endforeach; ?>
         <?php else: ?>
+			<div class="top-shadow"></div>
             <div class="no-comments"><?php echo tr('Comment', 'notFoundText'); ?></div>
+			<div class="bottom-shadow"></div>
         <?php endif; ?>
 
 		<?php $this->renderPartial('_form', array('newComment'=>$newComment)); ?>
 
         <div id="add-comment-main-button" class="add-comment-form" style="display: none">
-            <button class="reply-button" onclick="show(findById('add-comment-form')); show(findById('cancel-comment')); hide(findById('add-comment-main-button'));"><?php echo tr('Comment', 'Add'); ?></button>
+            <button class="add-comment" onclick="show(findById('add-comment-form')); show(findById('cancel-comment')); hide(findById('add-comment-main-button'));">
+				<span class="left"></span>
+				<span><?php echo tr('Comment', 'Add'); ?></span>
+				<span class="right"></span>
+			</button>
         </div>
 
 	</div>
@@ -61,11 +75,11 @@
 			ajaxRequest.open('POST', 'guestbook.php?lang=<?php echo (isset($_GET['lang'])? $_GET['lang']: 'en'); ?>&action=add', true);
 			ajaxRequest.onreadystatechange = function() {
 				if (ajaxRequest.readyState == 4) {
-					if (ajaxRequest.status == 200) {		                
+					if (ajaxRequest.status == 200) {
 						setHtml(findById('Comment_author_em'), '');
 						setHtml(findById('Comment_email_em'), '');
 						setHtml(findById('Comment_content_em'), '');
-						
+
 						var data = eval('(' + ajaxRequest.responseText + ')');
 						if (data.errorCount > 0) {
 							for (var key in data.errors) {

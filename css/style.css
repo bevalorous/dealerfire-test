@@ -18,24 +18,38 @@ body {
 #container .comment {
     background: #fdfbe9 url(../i/line.png) repeat;
     /*min-height: 155px;*/
-    margin-top: 22px;
     position: relative;
-}        
+}
+.comment-wrapper {
+	background: #fdfbe9 url(../i/vert-line.png) repeat-y 72px center;
+	padding-top: 10px;
+}
+.top-shadow, .bottom-shadow {
+	height: 11px;
+}
+.top-shadow {
+	background: url(../i/comment-top-shadow.png) no-repeat center 2px;
+}
+.bottom-shadow {
+	background: url(../i/comment-bottom-shadow.png) no-repeat center bottom;
+}
 .comment .thumb-col {
     float: left;
-    width: 100px;
+    width: 72px;
 }
 .comment .comment-col {
-    padding: 5px 30px 5px 5px;
-    margin-left: 100px;
+    padding: 5px 30px 5px 33px;
+    margin-left: 72px;
+	background: url(../i/vert-line.png) repeat-y center left;
+	
 }
-.comment .thumb {            
+.comment .thumb {
     background-color: #fff;
     border: solid 1px #dad8c9;
     height: 62px;
     width: 62px;
     display: block;
-    margin: 40px 13px 0 20px;
+    margin: 25px 13px 0 20px;
     padding: 3px;
 }
 .comment .thumb div {
@@ -44,34 +58,88 @@ body {
     height: 62px;
 }
 .comment .text {
-    margin: 35px 0 23px 0px;
+    margin: 15px 0 21px 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
+	line-height: 20px;
 }
 .comment .datetime {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
-    color: #ae9e8a;
+    color: #ae9e8a;	
+	margin: 22px 0 16px 0;
+	padding: 1px 0;
 }
 .comment .author {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #766958;
+	margin-bottom: 6px;
+	padding: 1px 0;
+}
+button.add-comment {
+    color: #fff;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;    	
+    border-color: transparent;
+	border-width: 0px;
+	background: none;
+	height: 33px;
+	line-height: 30px;
+    cursor: pointer;
 }
 button.reply-button {
     color: #fff;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #745532;
-    border-color: #745532;
-    border-width: 1px;
-    border-radius: 13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;    	
+    border-color: transparent;
+	border-width: 0px;
+	background: none;
+	height: 28px;
+	line-height: 24px;
     cursor: pointer;
+	padding: 0;
 }
-.comment .reply-button {
+.comment button.reply-button {
     position: absolute;
     right: 30px;
-    bottom: 25px; 
+    bottom: 25px;		
+}
+button.add-comment span {
+	background-repeat: repeat-x;
+	display: inline-block;
+	height: 33px;	
+	float: left;	
+	background: none;
+	background: url(../i/button-add-bg.png) repeat-x left center;
+}
+button.add-comment .left{
+	background-image: url(../i/button-add-bg-left.png);
+	background-position: right top;
+	width: 17px;
+}
+button.add-comment .right{
+	background-image: url(../i/button-add-bg-right.png);
+	background-position: left top;
+	width: 17px;
+}
+button.reply-button span {
+	background-repeat: repeat-x;
+	display: inline-block;
+	height: 28px;	
+	float: left;	
+	background: none;
+	background: url(../i/button-reply-bg.png) repeat-x left center;	
+}
+button.reply-button .left{
+	background-image: url(../i/button-reply-bg-left.png);
+	background-position: right top;
+	width: 15px;
+}
+button.reply-button .right{
+	background-image: url(../i/button-reply-bg-right.png);
+	background-position: left top;
+	width: 14px;
 }
 #add-comment-corner {
     position: absolute;
@@ -85,10 +153,11 @@ button.reply-button {
 .add-comment-form {
     text-align: center;
     margin-top: 55px;
+	margin-bottom: 20px;
 }
 .add-comment-form button.reply-button {
     font-size: 16px;
-    font-weight: normal;
+    font-weight: normal;	
 }
 div.form {
     margin-top: 22px;
@@ -100,7 +169,7 @@ div.form h1 {
     font-size: 14px;
     font-weight: bold;
 }
-div.form div.row {    
+div.form div.row {
 }
 div.form div.error {
     display: inline-block;
@@ -115,7 +184,7 @@ textarea {
     width: 615px;
     height: 130px;
 }
-input[type=text], textarea{        
+input[type=text], textarea{
     border: 1px solid #EFEEE8;
     padding: 6px 14px;
     font-size: 12px;

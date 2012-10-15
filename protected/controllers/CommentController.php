@@ -19,7 +19,7 @@ class CommentController extends Controller
         }        
         
         $comment = new Comment();
-        $comments = $comment->findAll();
+        $comments = $comment->findAll('1 = 1', 'createTime DESC');
         $this->render('list', array(
             'comments'=>$comments,
             'newComment'=>$newComment,

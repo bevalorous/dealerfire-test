@@ -13,7 +13,11 @@
 			<textarea id="Comment_content" name="Comment[content]" placeholder="<?php echo tr('Comment', 'content'); ?>"><?php echo $newComment->getAttribute('content'); ?></textarea>
 			<div class="error" id="Comment_content_em"><?php echo $newComment->getError('content'); ?></div>
 		</div>
-		<button type="submit" class="reply-button" id="add-comment-button"><?php echo tr('Comment', 'Add'); ?></button>
+		<button type="submit" class="reply-button" id="add-comment-button">
+			<span class="left"></span>
+			<span><?php echo tr('Comment', 'Add'); ?></span>
+			<span class="right"></span>
+		</button>
 		<a href="#" id="cancel-comment" style="display: none;" onclick="hide(findById('add-comment-form')); show(findById('add-comment-main-button')); hide(this); return false;"><?php echo tr('Comment', 'Cancel'); ?></a>
 	</form>
 </div>
