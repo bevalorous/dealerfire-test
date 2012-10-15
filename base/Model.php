@@ -3,7 +3,8 @@ require_once('base/Db.php');
 class Model
 {
     protected $_attributes = array();
-    
+    protected $_errors = array();
+	
     public function __construct()
     {
         $this->_attributes = array_fill_keys($this->attributeNames(), null);        
@@ -76,5 +77,11 @@ class Model
 		{
 			$this->_attributes[$name] = null;
 		}
-	}
+	}	
+	
+    public function getError($attributeName)
+    {
+        $error = isset($this->_errors[$attributeName][0])? $this->_errors[$attributeName][0]: '';
+        return $error;
+    }
 }
