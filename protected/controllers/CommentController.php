@@ -11,7 +11,11 @@ class CommentController extends Controller
         if (isset($_POST['Comment']))
         {
             $newComment->setAttributes($_POST['Comment']);
-            $newComment->save();            
+			$newComment->setAttribute('createTime', date('Y-m-d H:i:s'));
+            if ($newComment->save())
+			{
+				$newComment->unsetAttributes();
+			}
         }        
         
         $comment = new Comment();

@@ -12,5 +12,6 @@ return array(
     "Field 'Name' is too long (max = 100)"=>"Field 'Name' is too long (max = 100)",
     "Field 'Your comment text' is required"=>"Field 'Your comment text' is required",
     'List'=>'Comments',
+	'notFoundText'=>'No comments',
     'Reply'=>'Reply',
 );

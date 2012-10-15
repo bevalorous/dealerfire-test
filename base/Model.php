@@ -69,4 +69,12 @@ class Model
             return Db::getInstance()->insert($this->tableName(), $this->_attributes);
         }        
     }
+	
+	public function unsetAttributes()
+	{
+		foreach ($this->_attributes as $name => $value)
+		{
+			$this->_attributes[$name] = null;
+		}
+	}
 }
