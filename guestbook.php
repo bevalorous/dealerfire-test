@@ -9,9 +9,16 @@ function microtime_float()
 $start = microtime_float();
 require_once('protected/controllers/CommentController.php');
 $commentController = new CommentController();
-$commentController->actionList();
+if (isset($_POST['action']))
+	$action = $_POST['action'];
+elseif (isset($_GET['action']))
+	$action = $_GET['action'];
+else $action = 'list';
+$action = 'action'.ucfirst(strtolower($action));
+
+$commentController->$action();
 ?>
 <?php
 $end = microtime_float();
 ?>
-Page rendering time: <?php echo sprintf('%.6f', $end - $start); ?> sec
+<?php //Page rendering time: <?php echo sprintf('%.6f', $end - $start).' sec'; ?>

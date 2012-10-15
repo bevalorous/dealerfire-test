@@ -25,4 +25,21 @@ class CommentController extends Controller
             'newComment'=>$newComment,
         ));
     }
+	
+	public function actionAdd()
+	{
+		$newComment = new Comment();
+        
+        if (isset($_POST['Comment']))
+        {
+            $newComment->setAttributes($_POST['Comment']);
+			$newComment->setAttribute('createTime', date('Y-m-d H:i:s'));
+            if ($newComment->save())
+			{
+				$newComment->unsetAttributes();
+			}
+        }
+		$errors = $newComment->getErrors();
+		echo json_encode(array('attributes'=>$newComment->getAttributes(), 'errors'=>$errors, 'errorCount'=>count($errors)));
+	}
 }

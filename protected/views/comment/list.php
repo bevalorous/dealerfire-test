@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>	
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title><?php echo tr('Comment', 'List'); ?></title>
+	<script type="text/javascript" src="js/functions.js"></script>
 </head>
-<body>	
+<body>
     <div id="container">
-		<div id="lang-switcher">			
+		<div id="lang-switcher">
 			<?php if (!isset($_GET['lang'])) $_GET['lang'] = 'en'; ?>
-			
+
 			<?php if ($_GET['lang'] != 'en'): ?>
 				<a href="?lang=en">English</a>
 			<?php else: ?>
@@ -37,35 +38,55 @@
                     <?php $dt = strtotime($comment->getAttribute('createTime')); ?>
                     <p class="datetime"><?php echo date('d M Y', $dt).'&nbsp;@&nbsp;'.date('h:ia', $dt); ?></p>
                     <button class="reply-button"><?php echo tr('Comment', 'Reply'); ?></button>
-                </div>            
+                </div>
             </div>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="no-comments"><?php echo tr('Comment', 'notFoundText'); ?></div>
         <?php endif; ?>
-        
-        <div class="form">
-            <h1><?php echo tr('Comment', 'Add'); ?></h1>
-            <form  action="" method="post">
-                <div class="row">
-                    <input type="text" name="Comment[author]" placeholder="<?php echo tr('Comment', 'author'); ?>" maxlength="100" value="<?php echo $newComment->getAttribute('author'); ?>">
-                    <div class="error"><?php echo $newComment->getError('author'); ?></div>
-                </div>
-                <div class="row">
-                    <input type="text" name="Comment[email]" placeholder="<?php echo tr('Comment', 'email'); ?>" maxlength="100" value="<?php echo $newComment->getAttribute('email'); ?>">
-                    <div class="error"><?php echo $newComment->getError('email'); ?></div>
-                </div>
-                <div class="row">
-                    <textarea name="Comment[content]" placeholder="<?php echo tr('Comment', 'content'); ?>"><?php echo $newComment->getAttribute('content'); ?></textarea>
-                    <div class="error"><?php echo $newComment->getError('content'); ?></div>
-                </div>
-                <button type="submit" class="reply-button"><?php echo tr('Comment', 'Add'); ?></button> <a href="#"><?php echo tr('Comment', 'Cancel'); ?></a>
-            </form>
+
+		<?php $this->renderPartial('_form', array('newComment'=>$newComment)); ?>
+
+        <div id="add-comment-main-button" class="add-comment-form" style="display: none">
+            <button class="reply-button" onclick="show(findById('add-comment-form')); show(findById('cancel-comment')); hide(findById('add-comment-main-button'));"><?php echo tr('Comment', 'Add'); ?></button>
         </div>
-        
-        <div class="add-comment-form">
-            <button class="reply-button"><?php echo tr('Comment', 'Add'); ?></button>
-        </div>
+
 	</div>
+	<script type="text/javascript">
+		<?php if (!$newComment->hasErrors()): ?>
+		hide(findById('add-comment-form'));
+		show(findById('add-comment-main-button'));
+		<?php endif; ?>
+		findById('add-comment-form').onsubmit = function(){
+			ajaxRequest.open('POST', 'guestbook.php?lang=<?php echo (isset($_GET['lang'])? $_GET['lang']: 'en'); ?>&action=add', true);
+			ajaxRequest.onreadystatechange = function() {
+				if (ajaxRequest.readyState == 4) {
+					if (ajaxRequest.status == 200) {		                
+						setHtml(findById('Comment_author_em'), '');
+						setHtml(findById('Comment_email_em'), '');
+						setHtml(findById('Comment_content_em'), '');
+						
+						var data = eval('(' + ajaxRequest.responseText + ')');
+						if (data.errorCount > 0) {
+							for (var key in data.errors) {
+								findById('Comment_' + key + '_em').innerHTML = data.errors[key];
+							}
+						}
+						else
+							document.location.href = 'guestbook.php?lang=<?php echo (isset($_GET['lang'])? $_GET['lang']: 'en'); ?>&action=list';
+		            }
+					else {
+						alert("Server error: " + ajaxRequest.responseText);
+					}
+				}
+				return false;
+			}
+
+			ajaxRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			var params = 'Comment[author]=' + encodeURIComponent(findById('Comment_author').value) + '&Comment[email]=' + encodeURIComponent(findById('Comment_email').value) + '&Comment[content]=' + encodeURIComponent(findById('Comment_content').value);
+			ajaxRequest.send(params);
+			return false;
+		}
+	</script>
 </body>
 </html>
